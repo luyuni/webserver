@@ -44,10 +44,10 @@ public:
         }
     }
     ~cond() {
-        pthread_cond_destroy(&cond)l
+        pthread_cond_destroy(&m_cond);
     }
     bool wait(pthread_mutex_t * mutex) {
-        return pthread_cond_wait(&cond, mutex) == 0;
+        return pthread_cond_wait(&m_cond, mutex) == 0;
     }
     bool timedwait(pthread_mutex_t * mutex, struct timespec t) {
         return pthread_cond_timedwait(&m_cond, mutex, &t) == 0;
