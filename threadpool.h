@@ -16,18 +16,21 @@ private:
     // 队列大小
     int m_max_requests;
     // 队列实例
-    std::list m_workqueue;
+    std::list<T*> m_workqueue;
     // 互斥锁
     locker m_queuelocker;
-    // 信号量
+    // 信号量,判断是否有任务需要处理
     sem m_queuestat;
-    // 是否结束线程
+    // 是否结束线程 
     bool m_stop;
 public:
     thread_pool(int thread_num = 8, int m_max_requests = 1000);
     ~threadpool();
     bool append(T * request);
 };
+
+
+template<typename T>
 
 
 #endif
